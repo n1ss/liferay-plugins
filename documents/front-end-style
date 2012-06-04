@@ -1,0 +1,394 @@
+X2. Code standards:
+
+1. Source encoding
+
+2. Tabs, spaces, line breaks, EOF, EOL and other (Windows, Unix, Mac)
+
+3. HTML guide (JSP, JSPF, TPL, VM)
+
+	3.1. General rules
+
+		3.1.1. Document type
+		3.1.2. HTML validity
+		3.1.3. Separation of concerns
+		3.1.4. Entity references
+		3.1.5. HTML 5 usage
+
+	3.2. HTML Formatting
+
+		3.2.1. General formatting
+		3.2.2. Indents		
+
+	3.3. HMTL Semantics
+
+		3.3.1. General rules
+		3.3.2. HTML 5
+		3.3.3. ID and class names
+		3.3.4. Lists
+		3.3.5. ID vs Class
+		3.3.6. Inline CSS
+
+	3.4. File structure
+
+		3.4.1. JSP
+		3.4.2. Velocity
+		3.4.3. TPL
+
+4. CSS guide (CSS, SASS)
+
+	4.1. General rules
+		
+		4.1.1. CSS validity
+		4.1.2. ID and class naming
+		4.1.3. ID and class name style
+		4.1.4. ID and class name declaration
+		4.1.5. Properties
+		4.1.6. Units
+		4.1.7. URI values
+		4.1.8. Hexadecimal notation
+		4.1.9. Prefix selectors
+		4.1.10. Prefix separation
+		4.1.11. Hacks
+
+	4.2. CSS formating rules
+
+		4.2.1. Declaration order
+		4.2.2. Block content indentation
+		4.2.3. Declaration stops
+		4.2.4. Property name stops
+		4.2.5. Selector and declaration separation
+		4.3.6. Rule separation
+		4.3.7. Section comments
+
+	4.3. SASS
+
+	4.4. File structure
+
+		4.4.1. Admin.css
+		4.4.2. Core.css
+		4.4.3. Common.css
+		4.4.4. Custom.css
+		4.4.5. Portlet styles css
+
+6. Javascript guide
+	4.1. JS Formating
+	4.2. JS Styles
+	4.3. Prototypes, Override standard methods (ToString)
+	4.4. JS Performance issues (benchmarks, Objects, Namespaces)
+	4.5. JS modular
+	4.6. JS modular testing
+	4.7. JS Code protection (obfuscation)
+
+7. Documentation for setup your IDE for same styles as in guideline
+
+
+
+
+
+This document defines formatting and style rules for HTML and CSS. It aims at improving collaboration, code quality, and enabling supporting infrastructure. It applies to raw, working files that use HTML and CSS, including GSS files. Tools are free to obfuscate, minify, and compile as long as the general code quality is maintained.
+
+1. Source encoding
+
+We use UTF-8 for all documents we create. This also includes database encodings.
+
+
+2. Tabs, spaces, line breaks, EOF, EOL and other (Windows, Unix, Mac)
+
+- We use single tab for an indent. Tab length is 4 spaces, but make sure your IDE leaves it as tab.
+
+- Its better to use UNIX line break in your documents if your IDE provides this possibility.
+
+Our portals are running on UNIX based systems. Git also uses UNIX line break by default. Finally most of backend and frontend developers use Linux as their enviroment.
+
+
+3. HTML guide (JSP, JSPF, TPL, VM)
+
+	3.1. General rules
+
+		3.1.1. Document type
+
+		HTML5 (HTML syntax) is preferred for all HTML documents: <!DOCTYPE html>. 
+
+		It is recommended to use HTML, as text/html. Do not use XHTML. XHTML, as application/xhtml+xml, lacks both browser and infrastructure support and offers less room for 			optimization than HTML.	
+
+		3.1.2. HTML validity
+
+		Use valid HTML code unless that is not possible due to otherwise unattainable performance goals regarding file size.
+		Use tools such as the W3C HTML validator to test.
+		Using valid HTML is a measurable baseline quality attribute that contributes to learning about technical requirements and constraints, and that ensures proper HTML 
+		usage.
+
+		3.1.3. Separation of concerns
+
+		Strictly keep structure (markup), presentation (styling), and behavior (scripting) apart, and try to keep the interaction between the three to an absolute minimum.
+
+		That is, make sure documents and templates contain only HTML and HTML that is solely serving structural purposes. Move everything presentational into style sheets, and 		everything behavioral into scripts.
+
+		In addition, keep the contact area as small as possible by linking as few style sheets and scripts as possible from documents and templates.
+
+		Separating structure from presentation from behavior is important for maintenance reasons. It is always more expensive to change HTML documents and templates than it 			is to update style sheets and scripts.	
+
+		3.1.4. Entity references
+
+		There is no need to use entity references like &mdash;, &rdquo;, or &#x263a;, assuming the same encoding (UTF-8) is used for files and editors as well as among teams.
+		The only exceptions apply to characters with special meaning in HTML (like < and &) as well as control or “invisible” characters (like no-break spaces).
+
+		3.1.5. HTML 5 usage
+
+		It is encouraged to use HTML5 in markup as much as possible. This greatly improves semantics of the documents. But this should be used to the extent of all browsers 			supporting it, unsuported and browser specific abilities should be excluded.
+
+	3.2. HTML Formatting
+
+		3.2.1. General formatting
+
+		Use a new line for every block, list, or table element, and indent every such child element.
+		Independent of the styling of an element (as CSS allows elements to assume a different role per display property), put every block, list, or table element on a new 		line.
+
+		Also, indent them if they are child elements of a block, list, or table element.
+
+		3.2.2. Indents
+
+		Html follows general indents rules with some aditions. Logical blocks of elements should be seaprated by extra line
+
+		Example:
+
+		<ul>
+			<li>
+				<span>item</span>
+			</li>
+			<li>item</li>
+			<li>item</li>
+			<li class="last">item</li>
+		</ul>
+
+		<div class="someblock">
+			<h1>title</h1>
+			<p>text</p>
+		</div>
+
+		<a href="#" data-gameCode="${game.gameCode}" data-gameType="${game.gameType.shortName}" class="launcher">${game.name}</a>
+
+	3.3. HMTL Semantic
+
+		3.3.1. General rules
+
+		HTML markup language is pretty strict by its design. Each element has its unique purpose which we should follow. You should always stick to initial HTML design while 			coding or creating markup.
+
+		W3C references and guides can greatly help you in understandin this:
+
+		http://www.w3schools.com/tags/
+		http://www.w3.org/TR/1999/REC-html401-19991224/
+		http://www.w3.org/TR/2001/REC-xhtml11-20010531/
+
+		3.3.2. HTML 5
+
+		HTML 5 specfic elements greatly improve document markup. Using them can be dangerous on browser support level be cautious on this one.
+
+		3.3.3. ID and class names
+
+		ID and class names should represent functional descriotional of element, not style.
+
+		Correct example:
+
+		<header class="top-nav">
+		<button class="btn play minigames">
+		<div class="placeholder">
+
+		Wrong example:
+
+		<a class="red-button">
+		<div class="big-red-block">
+
+		3.3.4. Lists
+
+		All menues and list items should be implemented as actual list item to ensure their correct presentation with disabled CSS
+ 
+		3.3.5. ID vs Class
+
+		We shouls stick to classnames as much as possible. ID policy is really strict in liferay. On another level ID can be used by CMS team/livencee to overide default code.
+
+		3.3.6. Inline CSS
+
+		Strictly prohibited. No css should be inserted inside any of HTML based documents.
+
+
+	3.4. File structure
+
+		3.4.1. JSP
+
+			Core JSP structure is really dependant on framework backend uses to build portlets (Spring MVC, etc..)
+
+		3.4.2. Velocity
+
+			Velocity templates, located in templates folder. Current implementation is pretty straight forward.
+
+		3.4.3. TPL
+
+			All layout templates should be inside theme. Each template should be inside its own folder.
+
+4. CSS guide (CSS, SASS)
+
+	4.1. General rules
+		
+		4.1.1. CSS validity
+		
+		Use valid CSS where possible. Unless dealing with CSS validator bugs or requiring proprietary syntax, use valid CSS code.
+
+		Use tools such as the W3C CSS validator to test. Using valid CSS is a measurable baseline quality attribute that allows to spot CSS code that may not have any effect
+		and can be removed, and that ensures proper CSS usage.
+
+		4.1.2. ID and class naming
+
+		Instead of presentational or cryptic names, always use ID and class names that reflect the purpose of the element in question, or that are otherwise generic.
+		Names that are specific and reflect the purpose of the element should be preferred as these are most understandable and the least likely to change.
+		Generic names are simply a fallback for elements that have no particular or no meaning different from their siblings. They are typically needed as “helpers.”
+		Using functional or generic names reduces the probability of unnecessary document or template changes.
+
+		4.1.3. ID and class name style
+
+		Use ID and class names that are as short as possible but as long as necessary.
+		Try to convey what an ID or class is about while being as brief as possible.
+		Using ID and class names this way contributes to acceptable levels of understandability and code efficiency.
+
+		4.1.4. ID and class name declaration
+
+		Unless necessary (for example with helper classes), do not use element names in conjunction with IDs or classes.
+		Avoiding unnecessary ancestor selectors is useful for performance reasons.
+
+		4.1.5. Properties
+
+		Use shorthand properties where possible.
+		CSS offers a variety of shorthand properties (like font) that should be used whenever possible, even in cases where only one value is explicitly set.
+
+		Using shorthand properties is useful for code efficiency and understandability.
+
+		4.1.6. Units
+
+		Do not use units after 0 values unless they are required. Do not use put 0s in front of values or lengths between -1 and 1.
+
+		font-size: .8em;
+		margin: 0;
+		padding: 0;
+
+		4.1.7. URI values
+
+		Omit quotation marks in URI values
+
+		4.1.8. Hexadecimal notation
+
+		Use 3 character hexadecimal notation where possible.
+
+		4.1.9. Prefix selectors
+
+		In large projects as well as for code that gets embedded in other projects or on external sites use prefixes (as namespaces) for ID and class names. Use short, unique 
+		identifiers followed by a dash.
+
+		Using namespaces helps preventing naming conflicts and can make maintenance easier, for example in search and replace operations.
+
+		4.1.10. Prefix separation
+
+		Separate words in ID and class names by a hyphen.
+		Do not concatenate words and abbreviations in selectors by any characters (including none at all) other than hyphens, in order to improve understanding and 
+		scannability.
+
+		This is not strict rule, since some JS might require underscore as divider.
+
+		4.1.11. Hacks
+
+		Avoid user agent detection as well as CSS “hacks”—try a different approach first.
+
+	4.2. CSS formating rules
+
+		4.2.1. Declaration order
+
+		We have our own declaration order described in Appendix A, this should always be used to improve code readability
+
+		4.2.2. Block content indentation
+
+		Indent all block content, that is rules within rules as well as declarations, so to reflect hierarchy and improve understanding (SASS usage).
+
+		4.2.3. Declaration stops
+
+		Use a semicolon after every declaration.
+		End every declaration with a semicolon for consistency and extensibility reasons.
+
+		4.2.4. Property name stops
+
+		Use a space after a property name’s colon.
+		Always use a single space between property and value (but no space between property and colon) for consistency reasons.
+
+		4.2.5. Selector and declaration separation
+
+		Always start a new line for each selector and declaration.
+
+		4.3.6. Rule separation
+
+		Always put a line between rules.
+
+		4.3.7. Section comments
+
+		If possible, group style sheets sections together by using comments. Separate sections with new lines.
+
+	4.3. SASS
+
+	???
+
+	4.4. File structure
+
+		4.4.1. Admin.css
+
+		Determins look and feel of all admin screens
+
+		4.4.2. Core.css
+
+		Determines all CSS which is crutial for elements/portlets functionality.
+
+		4.4.3. Common.css
+
+		Determines all common styles for a portal, should be handled by SASS
+
+		4.4.4. Custom.css
+
+		Default liferay css, in which we will declarate all includes
+
+		4.4.5. Portlet styles css
+
+		Licencee specific theme styles, each portlet/element should have its own css file. So we can easilly exclude unneeded code in custom.css
+		
+5. Javascript guide (TODO)
+
+	refer to this guide for time beeing (agreed by everyone):
+
+	http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+
+
+
+li .someclass
+
+vs
+
+.someclass
+ 
+
+<ul class="ul">
+	<li class="menu-item">
+
+ul.ul li
+
+
+
+games-function
+
+<a class="icon-next">next<div>
+
+.icon-next {
+	background: url(algldg) top left;
+	height: 16px;
+	width: 16px;
+	text-indent: -99999em;
+}
+
+font-size: 0
+
+
+
